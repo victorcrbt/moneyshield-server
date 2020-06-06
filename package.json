@@ -1,0 +1,25 @@
+{
+  "name": "moneyshield",
+  "version": "0.1.0",
+  "description": "Application for personal financial control.",
+  "main": "server.ts",
+  "repository": "https://github.com/victorcrbt/moneyshield-server.git",
+  "author": "Victor Batalha",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "cz-conventional-changelog": "3.2.0",
+    "husky": "^4.2.5",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "ttypescript": "^1.5.10",
+    "typescript": "^3.9.5",
+    "typescript-transform-paths": "^1.1.14"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
