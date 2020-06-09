@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
 
+import globalExceptionHandler from '@shared/error/globalExceptionHandler';
 import routes from './routes';
 
 export default class App {
@@ -18,5 +19,6 @@ export default class App {
 
   private routes() {
     this.server.use(routes);
+    this.server.use(globalExceptionHandler);
   }
 }
