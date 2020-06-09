@@ -43,6 +43,7 @@
     }
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "tsyringe": "^4.3.0"
   }
 }
