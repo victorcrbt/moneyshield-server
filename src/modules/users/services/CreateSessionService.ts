@@ -2,6 +2,8 @@ import { injectable, inject } from 'tsyringe';
 import { User } from '@prisma/client';
 import jwt from 'jsonwebtoken';
 
+import authConfig from '@config/auth';
+
 import AppError from '@shared/error/AppError';
 
 import IUsersRepository from '../repositories/IUsersRepository';
@@ -49,7 +51,10 @@ export default class CreateSessionService {
       });
     }
 
-    const token = jwt.sign({}, '123456', { subject: user.id, expiresIn: '1d' });
+    const token = jwt.sign({}, authConfig.jwt.secret, {
+      subject: user.id,
+      expiresIn: '1d',
+    });
 
     return { token, user };
   }
