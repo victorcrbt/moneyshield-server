@@ -32,7 +32,7 @@ module.exports = {
     ],
     '@typescript-eslint/no-var-requires': 'off',
     'prettier/prettier': 'error',
-    'arrow-parens': 'off',
+    'arrow-parens': ['warn', 'as-needed'],
     camelcase: 'off',
     'comma-dangle': 'off',
     'class-methods-use-this': 'off',
