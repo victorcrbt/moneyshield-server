@@ -9,6 +9,7 @@
   "private": true,
   "scripts": {
     "start": "ts-node -r tsconfig-paths/register src/shared/infra/http/server.ts",
+    "build": "ttsc",
     "dev:server": "ts-node-dev -r tsconfig-paths/register --respawn --transpileOnly src/shared/infra/http/server.ts",
     "test": "jest"
   },
