@@ -1,5 +1,6 @@
 import { container } from 'tsyringe';
 
+import './providers/MailTemplateProvider';
 import './providers/MailProvider';
 import '@modules/users/providers/HashProvider';
 

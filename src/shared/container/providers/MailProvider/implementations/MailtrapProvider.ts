@@ -1,13 +1,19 @@
+import { injectable, inject } from 'tsyringe';
 import { createTransport, Transporter } from 'nodemailer';
 
 import IMailProvider from '../models/IMailProvider';
+import IMailTemplateProvider from '../../MailTemplateProvider/models/IMailTemplateProvider';
 
 import ISendMailDTO from '../dtos/ISendMailDTO';
 
+@injectable()
 export default class MailtrapProvider implements IMailProvider {
   private client: Transporter;
 
-  constructor() {
+  constructor(
+    @inject('MailTemplateProvider')
+    private mailTemplateProvider: IMailTemplateProvider
+  ) {
     this.client = createTransport({
       host: 'smtp.mailtrap.io',
       port: 2525,
@@ -23,6 +29,7 @@ export default class MailtrapProvider implements IMailProvider {
     to,
     subject,
     content,
+    templateData,
   }: ISendMailDTO): Promise<void> {
     await this.client.sendMail({
       from: {
@@ -34,7 +41,8 @@ export default class MailtrapProvider implements IMailProvider {
         address: to.email,
       },
       subject,
-      text: content,
+      text: content || '',
+      html: await this.mailTemplateProvider.parse(templateData),
     });
   }
 }
