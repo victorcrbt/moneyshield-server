@@ -18,7 +18,7 @@ export default class FakeMailProvider implements IMailProvider {
       id: uuid(),
       subject,
       content,
-    };
+    } as IMail;
 
     this.mails.push(mail);
   }
