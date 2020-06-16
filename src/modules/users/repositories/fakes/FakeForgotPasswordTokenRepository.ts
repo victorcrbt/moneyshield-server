@@ -4,6 +4,7 @@ import { uuid } from 'uuidv4';
 import IUsersRepository from '@modules/users/repositories/IForgotPasswordTokenRepository';
 
 import ICreateForgotPasswordTokenDTO from '@modules/users/dtos/ICreateForgotPasswordTokenDTO';
+import IFindTokenByContentDTO from '@modules/users/dtos/IFindTokenByContentDTO';
 
 export default class UsersRepository implements IUsersRepository {
   private tokensRepository: ForgotPasswordToken[] = [];
@@ -22,5 +23,25 @@ export default class UsersRepository implements IUsersRepository {
     this.tokensRepository.push(token);
 
     return token;
+  }
+
+  public async findByContent({
+    content,
+  }: IFindTokenByContentDTO): Promise<ForgotPasswordToken | null> {
+    const foundToken = this.tokensRepository.find(
+      token => token.content === content
+    );
+
+    if (!foundToken) return null;
+
+    return foundToken;
+  }
+
+  public async destroy(token: ForgotPasswordToken): Promise<void> {
+    const tokenIndex = this.tokensRepository.findIndex(
+      repoToken => repoToken.id === token.id
+    );
+
+    this.tokensRepository.splice(tokenIndex, 1);
   }
 }
