@@ -4,7 +4,8 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "module": "commonjs",
-    "lib": ["ES6"],
+    "lib": ["esnext"],
+    "sourceMap": true,
 
     "outDir": "./dist",
 

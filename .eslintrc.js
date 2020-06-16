@@ -2,6 +2,7 @@ module.exports = {
   env: {
     es2020: true,
     node: true,
+    jest: true,
   },
   extends: [
     'plugin:@typescript-eslint/recommended',
@@ -31,7 +32,7 @@ module.exports = {
     ],
     '@typescript-eslint/no-var-requires': 'off',
     'prettier/prettier': 'error',
-    'arrow-parens': 'off',
+    'arrow-parens': ['warn', 'as-needed'],
     camelcase: 'off',
     'comma-dangle': 'off',
     'class-methods-use-this': 'off',
@@ -55,6 +56,7 @@ module.exports = {
     'no-return-assign': 'off',
     'no-unused-vars': 'off',
     'no-useless-constructor': 'off',
+    'no-empty-function': 'off',
     strict: 'off',
     'object-curly-newline': 'off',
   },
