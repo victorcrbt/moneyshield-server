@@ -1,0 +1,4 @@
+# Prisma Migrate lockfile v1
+
+20200609005414-create_users_table
+20200616013429-create_password_tokens_table

@@ -1,0 +1,242 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateModel",
+      "model": "ForgotPasswordToken"
+    },
+    {
+      "tag": "CreateField",
+      "model": "ForgotPasswordToken",
+      "field": "id",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ForgotPasswordToken",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ForgotPasswordToken",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ForgotPasswordToken",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "uuid()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "ForgotPasswordToken",
+      "field": "user_id",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "ForgotPasswordToken",
+      "field": "content",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ForgotPasswordToken",
+          "field": "content"
+        },
+        "directive": "unique"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ForgotPasswordToken",
+          "field": "content"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ForgotPasswordToken",
+          "field": "content"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "uuid()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "ForgotPasswordToken",
+      "field": "user",
+      "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ForgotPasswordToken",
+          "field": "user"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ForgotPasswordToken",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[user_id]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ForgotPasswordToken",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "ForgotPasswordToken",
+      "field": "created_at",
+      "type": "DateTime",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ForgotPasswordToken",
+          "field": "created_at"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ForgotPasswordToken",
+          "field": "created_at"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "now()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "ForgotPasswordToken",
+      "field": "updated_at",
+      "type": "DateTime",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ForgotPasswordToken",
+          "field": "updated_at"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ForgotPasswordToken",
+          "field": "updated_at"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "now()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "ForgotPasswordToken"
+        },
+        "directive": "map"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Model",
+          "model": "ForgotPasswordToken"
+        },
+        "directive": "map"
+      },
+      "argument": "",
+      "value": "\"password_tokens\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "ForgotPasswordToken",
+      "type": "ForgotPasswordToken",
+      "arity": "List"
+    }
+  ]
+}
