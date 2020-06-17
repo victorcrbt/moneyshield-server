@@ -9,6 +9,8 @@ RUN npm install
 
 COPY . .
 
+RUN chmod -R 777 .
+
 EXPOSE 3333
 
 CMD ["npm", "run", "start"]
