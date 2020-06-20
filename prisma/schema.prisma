@@ -10,6 +10,12 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum AccountType {
+  not_applied
+  checking
+  savings
+}
+
 model User {
   id                  String                @id @default(uuid())
   name                String
@@ -18,6 +24,7 @@ model User {
   created_at          DateTime              @default(now())
   updated_at          DateTime              @default(now())
   ForgotPasswordToken ForgotPasswordToken[]
+  Cashier             Cashier[]
 
   @@map("users")
 }
@@ -31,4 +38,19 @@ model ForgotPasswordToken {
   updated_at DateTime @default(now())
 
   @@map("password_tokens")
+}
+
+model Cashier {
+  id              String       @id @default(uuid())
+  user_id         String
+  name            String?
+  is_bank_account Boolean      @default(false)
+  bank_name       String?
+  bank_branch     String?
+  bank_account    String?
+  account_type    AccountType?
+  balance         Float        @default(0)
+  user            User         @relation(fields: [user_id], references: [id])
+
+  @@map("cashiers")
 }
