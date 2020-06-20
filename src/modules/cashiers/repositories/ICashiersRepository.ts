@@ -9,4 +9,5 @@ export default interface ICashiersRepository {
   findByID(data: IFindByIDDTO): Promise<Cashier | null>;
   findByUserID(data: IFindCashierByUserIDDTO): Promise<Cashier[]>;
   destroy(cashier: Cashier): Promise<void>;
+  save(cashier: Cashier): Promise<Cashier>;
 }

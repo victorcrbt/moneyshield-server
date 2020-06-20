@@ -77,4 +77,18 @@ export default class FakeCashiersRepository implements ICashiersRepository {
       },
     });
   }
+
+  public async save(cashier: Cashier): Promise<Cashier> {
+    await this.client.cashier.update({
+      where: {
+        id: cashier.id,
+      },
+      data: {
+        name: cashier.name,
+        account_type: cashier.account_type,
+      },
+    });
+
+    return cashier;
+  }
 }

@@ -76,4 +76,14 @@ export default class FakeCashiersRepository implements ICashiersRepository {
 
     this.cashiersRepository.splice(cashierIndex, 1);
   }
+
+  public async save(cashier: Cashier): Promise<Cashier> {
+    const cashierIndex = this.cashiersRepository.findIndex(
+      cashierInRepo => cashierInRepo.id === cashier.id
+    );
+
+    this.cashiersRepository[cashierIndex] = cashier;
+
+    return cashier;
+  }
 }
