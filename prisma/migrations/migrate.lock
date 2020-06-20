@@ -5,3 +5,4 @@
 20200620010257-create_cashiers_table
 20200620170427-create_financial_movements_table
 20200620170536-add_created_at_and_updated_at_to_cashiers_table
+20200620171702-add_status_to_financial_movements
