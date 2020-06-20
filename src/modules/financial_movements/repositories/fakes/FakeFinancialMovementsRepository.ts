@@ -4,6 +4,7 @@ import { uuid } from 'uuidv4';
 import IFinancialMovementsRepository from '@modules/financial_movements/repositories/IFinancialMovementsRepository';
 
 import ICreateFinancialMovementDTO from '@modules/financial_movements/dtos/ICreateFinancialMovementDTO';
+import IFindFinancialMovementByIDDTO from '@modules/financial_movements/dtos/IFindFinancialMovementByIDDTO';
 
 export default class FakeFinancialMovementsRepository
   implements IFinancialMovementsRepository {
@@ -30,6 +31,33 @@ export default class FakeFinancialMovementsRepository
     };
 
     this.financialMovementsRepository.push(financialMovement);
+
+    return financialMovement;
+  }
+
+  public async findByID({
+    financial_movement_id,
+  }: IFindFinancialMovementByIDDTO): Promise<FinancialMovement | null> {
+    const foundFinancialMovement = this.financialMovementsRepository.find(
+      financialMovement => financialMovement.id === financial_movement_id
+    );
+
+    if (!foundFinancialMovement) return null;
+
+    return foundFinancialMovement;
+  }
+
+  public async save(
+    financialMovement: FinancialMovement
+  ): Promise<FinancialMovement> {
+    const financialMovementIndex = this.financialMovementsRepository.findIndex(
+      financialMovementInRepo =>
+        financialMovementInRepo.id === financialMovement.id
+    );
+
+    this.financialMovementsRepository[
+      financialMovementIndex
+    ] = financialMovement;
 
     return financialMovement;
   }

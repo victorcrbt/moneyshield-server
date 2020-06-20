@@ -4,6 +4,7 @@ import { uuid } from 'uuidv4';
 import IFinancialMovementsRepository from '@modules/financial_movements/repositories/IFinancialMovementsRepository';
 
 import ICreateFinancialMovementDTO from '@modules/financial_movements/dtos/ICreateFinancialMovementDTO';
+import IFindFinancialMovementByIDDTO from '@modules/financial_movements/dtos/IFindFinancialMovementByIDDTO';
 
 export default class FinancialMovementsRepository
   implements IFinancialMovementsRepository {
@@ -34,6 +35,40 @@ export default class FinancialMovementsRepository
         due_date,
         value,
         status,
+      },
+    });
+
+    return financialMovement;
+  }
+
+  public async findByID({
+    financial_movement_id,
+  }: IFindFinancialMovementByIDDTO): Promise<FinancialMovement | null> {
+    const financialMovement = await this.client.financialMovement.findOne({
+      where: {
+        id: financial_movement_id,
+      },
+    });
+
+    return financialMovement;
+  }
+
+  public async save(
+    financialMovement: FinancialMovement
+  ): Promise<FinancialMovement> {
+    await this.client.financialMovement.update({
+      where: {
+        id: financialMovement.id,
+      },
+      data: {
+        description: financialMovement.description,
+        due_date: financialMovement.due_date,
+        status: financialMovement.status,
+        cashier: {
+          connect: {
+            id: financialMovement.cashier_id,
+          },
+        },
       },
     });
 
