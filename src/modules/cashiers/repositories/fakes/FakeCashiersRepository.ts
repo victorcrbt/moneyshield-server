@@ -6,6 +6,7 @@ import ICashiersRepository from '@modules/cashiers/repositories/ICashiersReposit
 
 import ICreateCashierDTO from '@modules/cashiers/dtos/ICreateCashierDTO';
 import IFindCashierByUserIDDTO from '@modules/cashiers/dtos/IFindCashierByUserIDDTO';
+import IFindByIDDTO from '@modules/cashiers/dtos/IFindByIDDTO';
 
 export default class FakeCashiersRepository implements ICashiersRepository {
   private cashiersRepository: Cashier[] = [];
@@ -35,6 +36,16 @@ export default class FakeCashiersRepository implements ICashiersRepository {
     this.cashiersRepository.push(cashier);
 
     return cashier;
+  }
+
+  public async findByID({ cashier_id }: IFindByIDDTO): Promise<Cashier | null> {
+    const foundCashier = this.cashiersRepository.find(
+      cashier => cashier.id === cashier_id
+    );
+
+    if (!foundCashier) return null;
+
+    return foundCashier;
   }
 
   public async findByUserID({

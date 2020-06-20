@@ -5,6 +5,7 @@ import ICashiersRepository from '@modules/cashiers/repositories/ICashiersReposit
 
 import ICreateCashierDTO from '@modules/cashiers/dtos/ICreateCashierDTO';
 import IFindCashierByUserIDDTO from '@modules/cashiers/dtos/IFindCashierByUserIDDTO';
+import IFindByIDDTO from '@modules/cashiers/dtos/IFindByIDDTO';
 
 export default class FakeCashiersRepository implements ICashiersRepository {
   private client: PrismaClient;
@@ -37,6 +38,16 @@ export default class FakeCashiersRepository implements ICashiersRepository {
         bank_account,
         account_type,
         balance: 0,
+      },
+    });
+
+    return cashier;
+  }
+
+  public async findByID({ cashier_id }: IFindByIDDTO): Promise<Cashier | null> {
+    const cashier = await this.client.cashier.findOne({
+      where: {
+        id: cashier_id,
       },
     });
 
