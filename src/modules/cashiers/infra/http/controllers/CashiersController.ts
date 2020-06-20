@@ -4,6 +4,7 @@ import { container } from 'tsyringe';
 import CreateCashierService from '@modules/cashiers/services/CreateCashierService';
 import ListUsersCashiersService from '@modules/cashiers/services/ListUsersCashiersService';
 import VisualizeCashierService from '@modules/cashiers/services/VisualizeCashierService';
+import DeleteCashierService from '@modules/cashiers/services/DeleteCashierService';
 
 export default class CashiersController {
   public async store(req: Request, res: Response): Promise<Response> {
@@ -62,5 +63,19 @@ export default class CashiersController {
     });
 
     return res.status(200).json(cashier);
+  }
+
+  public async destroy(req: Request, res: Response): Promise<Response> {
+    const { id } = req.user;
+    const { cashier_id } = req.params;
+
+    const deleteCashier = container.resolve(DeleteCashierService);
+
+    await deleteCashier.run({
+      user_id: id,
+      cashier_id,
+    });
+
+    return res.status(204).json();
   }
 }

@@ -16,4 +16,10 @@ cashiersRouter.get(
   cashiersController.show
 );
 
+cashiersRouter.delete(
+  '/:cashier_id',
+  ensureAuthentication,
+  cashiersController.destroy
+);
+
 export default cashiersRouter;
