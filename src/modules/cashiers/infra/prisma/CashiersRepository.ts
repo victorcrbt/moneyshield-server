@@ -69,4 +69,12 @@ export default class FakeCashiersRepository implements ICashiersRepository {
 
     return cashiers;
   }
+
+  public async destroy(cashier: Cashier): Promise<void> {
+    await this.client.cashier.delete({
+      where: {
+        id: cashier.id,
+      },
+    });
+  }
 }

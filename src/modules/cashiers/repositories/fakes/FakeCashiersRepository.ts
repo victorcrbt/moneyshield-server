@@ -68,4 +68,12 @@ export default class FakeCashiersRepository implements ICashiersRepository {
   public async findAll(): Promise<Cashier[]> {
     return this.cashiersRepository;
   }
+
+  public async destroy(cashier: Cashier): Promise<void> {
+    const cashierIndex = this.cashiersRepository.findIndex(
+      cashierInRepo => cashierInRepo.id === cashier.id
+    );
+
+    this.cashiersRepository.splice(cashierIndex, 1);
+  }
 }
