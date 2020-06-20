@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -56,8 +56,6 @@ model Cashier {
   account_type      AccountType?
   balance           Float               @default(0)
   user              User                @relation(fields: [user_id], references: [id])
-  created_at        DateTime            @default(now())
-  updated_at        DateTime            @default(now())
   FinancialMovement FinancialMovement[]
 
   @@map("cashiers")
