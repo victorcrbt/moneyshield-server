@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 
 import CreateCashierService from '@modules/cashiers/services/CreateCashierService';
 import ListUsersCashiersService from '@modules/cashiers/services/ListUsersCashiersService';
+import VisualizeCashierService from '@modules/cashiers/services/VisualizeCashierService';
 
 export default class CashiersController {
   public async store(req: Request, res: Response): Promise<Response> {
@@ -47,5 +48,19 @@ export default class CashiersController {
     });
 
     return res.status(200).json(cashiers);
+  }
+
+  public async show(req: Request, res: Response): Promise<Response> {
+    const { id } = req.user;
+    const { cashier_id } = req.params;
+
+    const visualizeCashier = container.resolve(VisualizeCashierService);
+
+    const cashier = await visualizeCashier.run({
+      user_id: id,
+      cashier_id,
+    });
+
+    return res.status(200).json(cashier);
   }
 }

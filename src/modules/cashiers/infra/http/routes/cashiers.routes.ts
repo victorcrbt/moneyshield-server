@@ -10,4 +10,10 @@ const cashiersController = new CashiersController();
 cashiersRouter.post('/', ensureAuthentication, cashiersController.store);
 cashiersRouter.get('/', ensureAuthentication, cashiersController.index);
 
+cashiersRouter.get(
+  '/:cashier_id',
+  ensureAuthentication,
+  cashiersController.show
+);
+
 export default cashiersRouter;
