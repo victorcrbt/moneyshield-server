@@ -13,4 +13,10 @@ financialMovementsRouter.post(
   financialMovementsController.store
 );
 
+financialMovementsRouter.put(
+  '/:financial_movement_id',
+  ensureAuthentication,
+  financialMovementsController.update
+);
+
 export default financialMovementsRouter;

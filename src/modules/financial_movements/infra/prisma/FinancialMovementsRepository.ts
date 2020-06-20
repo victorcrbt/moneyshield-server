@@ -64,6 +64,7 @@ export default class FinancialMovementsRepository
         description: financialMovement.description,
         due_date: financialMovement.due_date,
         status: financialMovement.status,
+        type: financialMovement.type,
         cashier: {
           connect: {
             id: financialMovement.cashier_id,
