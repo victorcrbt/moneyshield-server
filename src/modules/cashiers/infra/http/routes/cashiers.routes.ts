@@ -16,6 +16,12 @@ cashiersRouter.get(
   cashiersController.show
 );
 
+cashiersRouter.put(
+  '/:cashier_id',
+  ensureAuthentication,
+  cashiersController.update
+);
+
 cashiersRouter.delete(
   '/:cashier_id',
   ensureAuthentication,
