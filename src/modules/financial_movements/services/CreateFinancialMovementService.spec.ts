@@ -60,6 +60,7 @@ describe('CreateFinancialMovementService', () => {
       expect.arrayContaining([
         expect.objectContaining({
           cashier_id: cashier.id,
+          user_id: user.id,
           description: 'Salary payment',
           due_date: new Date(2020, 5, 20),
           type: 'income',

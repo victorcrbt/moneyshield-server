@@ -44,6 +44,7 @@ describe('UpdateFinancialMovementService', () => {
     const financialMovementToUpdate = await fakeFinancialMovementsRepository.create(
       {
         cashier_id: cashier.id,
+        user_id: user.id,
         description: 'Salary payment',
         due_date: new Date(2020, 5, 20),
         type: 'income',
@@ -97,6 +98,7 @@ describe('UpdateFinancialMovementService', () => {
     const financialMovementToUpdate = await fakeFinancialMovementsRepository.create(
       {
         cashier_id: cashier.id,
+        user_id: user.id,
         description: 'Salary payment',
         due_date: new Date(2020, 5, 20),
         type: 'income',
@@ -152,6 +154,7 @@ describe('UpdateFinancialMovementService', () => {
     const financialMovementToUpdate = await fakeFinancialMovementsRepository.create(
       {
         cashier_id: cashier.id,
+        user_id: user.id,
         description: 'Salary payment',
         due_date: new Date(2020, 5, 20),
         type: 'outcome',
@@ -218,6 +221,7 @@ describe('UpdateFinancialMovementService', () => {
     const financialMovementToUpdate = await fakeFinancialMovementsRepository.create(
       {
         cashier_id: sourceCashier.id,
+        user_id: user.id,
         description: 'Salary payment',
         due_date: new Date(2020, 5, 20),
         type: 'income',
@@ -274,6 +278,7 @@ describe('UpdateFinancialMovementService', () => {
     const financialMovementToUpdate = await fakeFinancialMovementsRepository.create(
       {
         cashier_id: sourceCashier.id,
+        user_id: user.id,
         description: 'Salary payment',
         due_date: new Date(2020, 5, 20),
         type: 'outcome',
@@ -330,6 +335,7 @@ describe('UpdateFinancialMovementService', () => {
     const financialMovementToUpdate = await fakeFinancialMovementsRepository.create(
       {
         cashier_id: sourceCashier.id,
+        user_id: user.id,
         description: 'Salary payment',
         due_date: new Date(2020, 5, 20),
         type: 'income',
@@ -386,6 +392,7 @@ describe('UpdateFinancialMovementService', () => {
     const financialMovementToUpdate = await fakeFinancialMovementsRepository.create(
       {
         cashier_id: sourceCashier.id,
+        user_id: user.id,
         description: 'Salary payment',
         due_date: new Date(2020, 5, 20),
         type: 'outcome',
@@ -440,6 +447,7 @@ describe('UpdateFinancialMovementService', () => {
     const financialMovementToUpdate = await fakeFinancialMovementsRepository.create(
       {
         cashier_id: 'non-existing-cashier',
+        user_id: 'non-existing-user',
         description: 'Salary payment',
         due_date: new Date(2020, 5, 20),
         type: 'outcome',
@@ -478,6 +486,7 @@ describe('UpdateFinancialMovementService', () => {
     const financialMovementToUpdate = await fakeFinancialMovementsRepository.create(
       {
         cashier_id: sourceCashier.id,
+        user_id: 'non-existing-user',
         description: 'Salary payment',
         due_date: new Date(2020, 5, 20),
         type: 'outcome',
@@ -528,6 +537,7 @@ describe('UpdateFinancialMovementService', () => {
     const financialMovementToUpdate = await fakeFinancialMovementsRepository.create(
       {
         cashier_id: sourceCashier.id,
+        user_id: 'another-user-id',
         description: 'Salary payment',
         due_date: new Date(2020, 5, 20),
         type: 'outcome',

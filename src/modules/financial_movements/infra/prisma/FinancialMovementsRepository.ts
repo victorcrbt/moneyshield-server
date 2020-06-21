@@ -16,6 +16,7 @@ export default class FinancialMovementsRepository
 
   public async create({
     cashier_id,
+    user_id,
     description,
     type,
     due_date,
@@ -28,6 +29,11 @@ export default class FinancialMovementsRepository
         cashier: {
           connect: {
             id: cashier_id,
+          },
+        },
+        user: {
+          connect: {
+            id: user_id,
           },
         },
         description,

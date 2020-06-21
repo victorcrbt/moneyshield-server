@@ -40,6 +40,7 @@ describe('toggleFinancialMovementStatusService', () => {
 
     const movement = await fakeFinancialMovementsRepository.create({
       cashier_id: cashier.id,
+      user_id: user.id,
       description: 'Salary payment',
       due_date: new Date(2020, 5, 20),
       type: 'income',
@@ -54,6 +55,7 @@ describe('toggleFinancialMovementStatusService', () => {
 
     expect(financialMovement).toMatchObject({
       cashier_id: cashier.id,
+      user_id: user.id,
       description: 'Salary payment',
       due_date: new Date(2020, 5, 20),
       type: 'income',
@@ -68,6 +70,7 @@ describe('toggleFinancialMovementStatusService', () => {
 
     expect(financialMovement).toMatchObject({
       cashier_id: cashier.id,
+      user_id: user.id,
       description: 'Salary payment',
       due_date: new Date(2020, 5, 20),
       type: 'income',
@@ -91,6 +94,7 @@ describe('toggleFinancialMovementStatusService', () => {
 
     const movement = await fakeFinancialMovementsRepository.create({
       cashier_id: cashier.id,
+      user_id: user.id,
       description: 'Salary payment',
       due_date: new Date(2020, 5, 20),
       type: 'income',
@@ -125,6 +129,7 @@ describe('toggleFinancialMovementStatusService', () => {
 
     const movement = await fakeFinancialMovementsRepository.create({
       cashier_id: cashier.id,
+      user_id: user.id,
       description: 'Salary payment',
       due_date: new Date(2020, 5, 20),
       type: 'income',
@@ -159,6 +164,7 @@ describe('toggleFinancialMovementStatusService', () => {
 
     const movement = await fakeFinancialMovementsRepository.create({
       cashier_id: cashier.id,
+      user_id: user.id,
       description: 'Salary payment',
       due_date: new Date(2020, 5, 20),
       type: 'outcome',
@@ -193,6 +199,7 @@ describe('toggleFinancialMovementStatusService', () => {
 
     const movement = await fakeFinancialMovementsRepository.create({
       cashier_id: cashier.id,
+      user_id: user.id,
       description: 'Salary payment',
       due_date: new Date(2020, 5, 20),
       type: 'outcome',
@@ -234,6 +241,7 @@ describe('toggleFinancialMovementStatusService', () => {
   it('should return an error if the cashier does not exist', async () => {
     const movement = await fakeFinancialMovementsRepository.create({
       cashier_id: 'non-existing-cashier',
+      user_id: 'non-existing-user',
       description: 'Salary payment',
       due_date: new Date(2020, 5, 20),
       type: 'income',
@@ -276,6 +284,7 @@ describe('toggleFinancialMovementStatusService', () => {
 
     const movement = await fakeFinancialMovementsRepository.create({
       cashier_id: cashier.id,
+      user_id: user.id,
       description: 'Salary payment',
       due_date: new Date(2020, 5, 20),
       type: 'income',

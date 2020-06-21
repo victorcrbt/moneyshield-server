@@ -12,6 +12,7 @@ export default class FakeFinancialMovementsRepository
 
   public async create({
     cashier_id,
+    user_id,
     description,
     type,
     due_date,
@@ -21,6 +22,7 @@ export default class FakeFinancialMovementsRepository
     const financialMovement: FinancialMovement = {
       id: uuid(),
       cashier_id,
+      user_id,
       description,
       type,
       due_date,

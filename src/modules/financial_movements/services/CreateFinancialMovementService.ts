@@ -54,6 +54,7 @@ export default class CreateFinancialMovementService {
 
     const financialMovement = await this.financialMovementsRepository.create({
       cashier_id,
+      user_id,
       description,
       due_date,
       type,
