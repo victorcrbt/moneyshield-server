@@ -1,10 +1,12 @@
 import { FinancialMovement } from '@prisma/client';
 import { uuid } from 'uuidv4';
+import _ from 'lodash';
 
 import IFinancialMovementsRepository from '@modules/financial_movements/repositories/IFinancialMovementsRepository';
 
 import ICreateFinancialMovementDTO from '@modules/financial_movements/dtos/ICreateFinancialMovementDTO';
 import IFindFinancialMovementByIDDTO from '@modules/financial_movements/dtos/IFindFinancialMovementByIDDTO';
+import IFindFinancialMovementByUserIDDTO from '@modules/financial_movements/dtos/IFindFinancialMovementByUserIDDTO';
 
 export default class FakeFinancialMovementsRepository
   implements IFinancialMovementsRepository {
@@ -47,6 +49,33 @@ export default class FakeFinancialMovementsRepository
     if (!foundFinancialMovement) return null;
 
     return foundFinancialMovement;
+  }
+
+  public async findByUserID({
+    user_id,
+    status,
+    sorting,
+  }: IFindFinancialMovementByUserIDDTO): Promise<FinancialMovement[]> {
+    let foundFinancialMovements = this.financialMovementsRepository.filter(
+      financialMovement => financialMovement.user_id === user_id
+    );
+
+    if (status) {
+      foundFinancialMovements = foundFinancialMovements.filter(
+        financialMovement => financialMovement.status === status
+      );
+    }
+
+    let sortedFinacialMovements = _.sortBy(
+      foundFinancialMovements,
+      sorting?.field || 'id'
+    );
+
+    if (sorting?.order === 'desc') {
+      sortedFinacialMovements = _.reverse(sortedFinacialMovements);
+    }
+
+    return sortedFinacialMovements;
   }
 
   public async save(

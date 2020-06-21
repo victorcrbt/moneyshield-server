@@ -5,6 +5,7 @@ import IFinancialMovementsRepository from '@modules/financial_movements/reposito
 
 import ICreateFinancialMovementDTO from '@modules/financial_movements/dtos/ICreateFinancialMovementDTO';
 import IFindFinancialMovementByIDDTO from '@modules/financial_movements/dtos/IFindFinancialMovementByIDDTO';
+import IFindFinancialMovementByUserIDDTO from '@modules/financial_movements/dtos/IFindFinancialMovementByUserIDDTO';
 
 export default class FinancialMovementsRepository
   implements IFinancialMovementsRepository {
@@ -57,6 +58,29 @@ export default class FinancialMovementsRepository
     });
 
     return financialMovement;
+  }
+
+  public async findByUserID({
+    user_id,
+    status,
+    sorting,
+  }: IFindFinancialMovementByUserIDDTO): Promise<FinancialMovement[]> {
+    const where = {
+      user_id,
+    } as any;
+
+    if (status) {
+      where.status = status;
+    }
+
+    const financialMovements = await this.client.financialMovement.findMany({
+      where,
+      orderBy: {
+        [sorting?.field || 'created_at']: sorting?.order || 'asc',
+      },
+    });
+
+    return financialMovements;
   }
 
   public async save(
