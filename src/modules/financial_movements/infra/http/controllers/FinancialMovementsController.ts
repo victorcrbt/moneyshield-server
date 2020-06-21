@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 
 import CreateFinancialMovementService from '@modules/financial_movements/services/CreateFinancialMovementService';
 import UpdateFinancialMovementService from '@modules/financial_movements/services/UpdateFinancialMovementService';
+import ListUserFinancialMovements from '@modules/financial_movements/services/ListUserFinancialMovements';
 
 export default class FinancialMovementsController {
   public async store(req: Request, res: Response): Promise<Response> {
@@ -24,6 +25,26 @@ export default class FinancialMovementsController {
     });
 
     return res.status(201).json(financialMovement);
+  }
+
+  public async index(req: Request, res: Response): Promise<Response> {
+    const { id } = req.user;
+    const { status, sort_by, order } = req.query;
+
+    const listUserFinancialMovements = container.resolve(
+      ListUserFinancialMovements
+    );
+
+    const financialMovements = await listUserFinancialMovements.run({
+      user_id: id,
+      status: status as 'pending' | 'paid_out',
+      sorting: {
+        field: sort_by as 'due_date' | 'value',
+        order: order as 'asc' | 'desc',
+      },
+    });
+
+    return res.status(200).json(financialMovements);
   }
 
   public async update(req: Request, res: Response): Promise<Response> {

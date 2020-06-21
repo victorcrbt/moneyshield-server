@@ -13,6 +13,12 @@ financialMovementsRouter.post(
   financialMovementsController.store
 );
 
+financialMovementsRouter.get(
+  '/',
+  ensureAuthentication,
+  financialMovementsController.index
+);
+
 financialMovementsRouter.put(
   '/:financial_movement_id',
   ensureAuthentication,
