@@ -2,8 +2,9 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import CreateFinancialMovementService from '@modules/financial_movements/services/CreateFinancialMovementService';
-import UpdateFinancialMovementService from '@modules/financial_movements/services/UpdateFinancialMovementService';
 import ListUserFinancialMovements from '@modules/financial_movements/services/ListUserFinancialMovements';
+import VisualizeFinancialMovementService from '@modules/financial_movements/services/VisualizeFinancialMovementService';
+import UpdateFinancialMovementService from '@modules/financial_movements/services/UpdateFinancialMovementService';
 
 export default class FinancialMovementsController {
   public async store(req: Request, res: Response): Promise<Response> {
@@ -45,6 +46,22 @@ export default class FinancialMovementsController {
     });
 
     return res.status(200).json(financialMovements);
+  }
+
+  public async show(req: Request, res: Response): Promise<Response> {
+    const { id } = req.user;
+    const { financial_movement_id } = req.params;
+
+    const visualizeFinancialMovement = container.resolve(
+      VisualizeFinancialMovementService
+    );
+
+    const financialMovement = await visualizeFinancialMovement.run({
+      user_id: id,
+      financial_movement_id,
+    });
+
+    return res.status(200).json(financialMovement);
   }
 
   public async update(req: Request, res: Response): Promise<Response> {

@@ -19,6 +19,12 @@ financialMovementsRouter.get(
   financialMovementsController.index
 );
 
+financialMovementsRouter.get(
+  '/:financial_movement_id',
+  ensureAuthentication,
+  financialMovementsController.show
+);
+
 financialMovementsRouter.put(
   '/:financial_movement_id',
   ensureAuthentication,
