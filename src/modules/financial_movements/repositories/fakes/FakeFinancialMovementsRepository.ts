@@ -93,6 +93,15 @@ export default class FakeFinancialMovementsRepository
     return financialMovement;
   }
 
+  public async destroy(financialMovement: FinancialMovement): Promise<void> {
+    const financialMovementIndex = this.financialMovementsRepository.findIndex(
+      financialMovementInRepo =>
+        financialMovementInRepo.id === financialMovement.id
+    );
+
+    this.financialMovementsRepository.splice(financialMovementIndex, 1);
+  }
+
   public async findAll(): Promise<FinancialMovement[]> {
     return this.financialMovementsRepository;
   }

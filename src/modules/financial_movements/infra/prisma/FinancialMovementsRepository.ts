@@ -105,4 +105,12 @@ export default class FinancialMovementsRepository
 
     return financialMovement;
   }
+
+  public async destroy(financialMovement: FinancialMovement): Promise<void> {
+    await this.client.financialMovement.delete({
+      where: {
+        id: financialMovement.id,
+      },
+    });
+  }
 }

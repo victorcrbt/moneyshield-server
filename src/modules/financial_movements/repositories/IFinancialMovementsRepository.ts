@@ -13,4 +13,5 @@ export default interface IFinancialMovementsRepository {
     data: IFindFinancialMovementByUserIDDTO
   ): Promise<FinancialMovement[]>;
   save(financialMovement: FinancialMovement): Promise<FinancialMovement>;
+  destroy(finacnialMovement: FinancialMovement): Promise<void>;
 }
