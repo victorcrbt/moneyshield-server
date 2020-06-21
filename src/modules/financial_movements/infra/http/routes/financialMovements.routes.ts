@@ -31,4 +31,10 @@ financialMovementsRouter.put(
   financialMovementsController.update
 );
 
+financialMovementsRouter.delete(
+  '/:financial_movement_id',
+  ensureAuthentication,
+  financialMovementsController.destroy
+);
+
 export default financialMovementsRouter;

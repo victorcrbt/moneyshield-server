@@ -5,6 +5,7 @@ import CreateFinancialMovementService from '@modules/financial_movements/service
 import ListUserFinancialMovements from '@modules/financial_movements/services/ListUserFinancialMovements';
 import VisualizeFinancialMovementService from '@modules/financial_movements/services/VisualizeFinancialMovementService';
 import UpdateFinancialMovementService from '@modules/financial_movements/services/UpdateFinancialMovementService';
+import DeleteFinancialMovementService from '@modules/financial_movements/services/DeleteFinancialMovementService';
 
 export default class FinancialMovementsController {
   public async store(req: Request, res: Response): Promise<Response> {
@@ -83,5 +84,21 @@ export default class FinancialMovementsController {
     });
 
     return res.status(200).json(financialMovement);
+  }
+
+  public async destroy(req: Request, res: Response): Promise<Response> {
+    const { id } = req.user;
+    const { financial_movement_id } = req.params;
+
+    const deleteFinancialMovement = container.resolve(
+      DeleteFinancialMovementService
+    );
+
+    await deleteFinancialMovement.run({
+      user_id: id,
+      financial_movement_id,
+    });
+
+    return res.status(204).json();
   }
 }
