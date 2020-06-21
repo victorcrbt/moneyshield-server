@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -35,7 +35,6 @@ model User {
   updated_at          DateTime              @default(now())
   ForgotPasswordToken ForgotPasswordToken[]
   Cashier             Cashier[]
-  FinancialMovement   FinancialMovement[]
 
   @@map("users")
 }
@@ -72,14 +71,12 @@ model Cashier {
 model FinancialMovement {
   id          String         @id @default(uuid())
   cashier_id  String
-  user_id     String
   description String
   type        MovementTypes
   due_date    DateTime
   value       Float
   status      MovementStatus
   cashier     Cashier        @relation(fields: [cashier_id], references: [id])
-  user        User           @relation(fields: [user_id], references: [id])
   created_at  DateTime       @default(now())
   updated_at  DateTime       @default(now())
 

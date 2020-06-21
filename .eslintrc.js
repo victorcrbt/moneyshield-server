@@ -57,6 +57,7 @@ module.exports = {
     'no-unused-vars': 'off',
     'no-useless-constructor': 'off',
     'no-empty-function': 'off',
+    'operator-linebreak': 'off',
     strict: 'off',
     'object-curly-newline': 'off',
   },

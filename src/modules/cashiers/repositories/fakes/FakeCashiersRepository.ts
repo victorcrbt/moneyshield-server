@@ -31,6 +31,8 @@ export default class FakeCashiersRepository implements ICashiersRepository {
       bank_account,
       account_type,
       balance,
+      created_at: new Date(Date.now()),
+      updated_at: new Date(Date.now()),
     };
 
     this.cashiersRepository.push(cashier);

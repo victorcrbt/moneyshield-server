@@ -86,6 +86,7 @@ export default class FakeCashiersRepository implements ICashiersRepository {
       data: {
         name: cashier.name,
         account_type: cashier.account_type,
+        balance: cashier.balance,
       },
     });
 

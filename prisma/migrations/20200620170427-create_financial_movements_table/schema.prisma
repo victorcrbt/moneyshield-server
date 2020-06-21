@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -21,11 +21,6 @@ enum MovementTypes {
   outcome
 }
 
-enum MovementStatus {
-  pending
-  paid_out
-}
-
 model User {
   id                  String                @id @default(uuid())
   name                String
@@ -35,7 +30,6 @@ model User {
   updated_at          DateTime              @default(now())
   ForgotPasswordToken ForgotPasswordToken[]
   Cashier             Cashier[]
-  FinancialMovement   FinancialMovement[]
 
   @@map("users")
 }
@@ -62,26 +56,21 @@ model Cashier {
   account_type      AccountType?
   balance           Float               @default(0)
   user              User                @relation(fields: [user_id], references: [id])
-  created_at        DateTime            @default(now())
-  updated_at        DateTime            @default(now())
   FinancialMovement FinancialMovement[]
 
   @@map("cashiers")
 }
 
 model FinancialMovement {
-  id          String         @id @default(uuid())
+  id          String        @id @default(uuid())
   cashier_id  String
-  user_id     String
   description String
   type        MovementTypes
   due_date    DateTime
   value       Float
-  status      MovementStatus
-  cashier     Cashier        @relation(fields: [cashier_id], references: [id])
-  user        User           @relation(fields: [user_id], references: [id])
-  created_at  DateTime       @default(now())
-  updated_at  DateTime       @default(now())
+  cashier     Cashier       @relation(fields: [cashier_id], references: [id])
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @default(now())
 
   @@map("financial_movements")
 }
