@@ -61,7 +61,7 @@
     "handlebars": "^4.7.6",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
-    "nodemailer": "^6.4.8",
+    "nodemailer": "^6.4.16",
     "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.3.0",
     "uuidv4": "^6.1.0"
